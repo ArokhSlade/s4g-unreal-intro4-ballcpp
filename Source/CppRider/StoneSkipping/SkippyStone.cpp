@@ -16,11 +16,14 @@ ASkippyStone::ASkippyStone()
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>("SpringArm");
 	Camera = CreateDefaultSubobject<UCameraComponent>("Camera");
 
-	RootComponent = Mesh;
+	RootComponent = CreateDefaultSubobject<USceneComponent>(TEXT("RootSceneComponent"));
+	
+	Mesh->SetupAttachment(RootComponent);
 	SpringArm->SetupAttachment(Mesh);
 	Camera->SetupAttachment(SpringArm);
 
-	LeanSidewaysStrength = 100'000.0f;
+	LeanSidewaysStrength = 50'000.f;
+	BoostStrength = 2'500.f;
 	Mesh->SetSimulatePhysics(true);
 }
 
